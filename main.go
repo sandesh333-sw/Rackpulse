@@ -12,7 +12,7 @@ func main() {
 
 	mux.HandleFunc("GET /healthz", healthHandler)
 	mux.HandleFunc("GET /api/v1/pdus", pdusHandler)
-	mux.HandleFunc("GET /api/v1/pdus/{id}", pduHandler)
+	mux.HandleFunc("GET /api/v1/pdus/{name}", pduHandler)
 
 	addr := "127.0.0.1:8080"
 	log.Printf("RackPulse listening on http://%s", addr)
@@ -38,14 +38,14 @@ func pdusHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func pduHandler(w http.ResponseWriter, r *http.Request){
-	id := r.PathValue("id")
-	fmt.Println(id)
+func pduHandler(w http.ResponseWriter, r *http.Request) {
+	name := r.PathValue("name")
+	fmt.Println(name)
 
 	pdus := samplePDUs()
 
 	for _, pdu := range pdus {
-		if pdu.ID == id {
+		if pdu.Name == name {
 			w.Header().Set("Content-Type", "application/json")
 
 			if err := json.NewEncoder(w).Encode(pdu); err != nil {
@@ -56,4 +56,3 @@ func pduHandler(w http.ResponseWriter, r *http.Request){
 	}
 	http.Error(w, "PDU not found", http.StatusNotFound)
 }
-

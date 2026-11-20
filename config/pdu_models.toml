@@ -1,0 +1,46 @@
+
+# RackPulse PDU model configuration.
+# Values copied from the original pdu_monitor configuration.
+
+[models.APDU10150SM]
+match_manufacturer = "APC"
+match_model_prefixes = ["APDU10150SM"]
+
+[models.APDU10150SM.readings]
+
+input_voltage   = { oid = "1.3.6.1.4.1.318.1.1.32.3.4.1.6.1.1", scale_factor = 1.0,   unit = "V" }
+phase_1         = { oid = "1.3.6.1.4.1.318.1.1.32.3.4.1.5.1.1", scale_factor = 0.01,  unit = "A" }
+bank_1          = { scale_factor = 0.01, unit = "A" }
+bank_2          = { scale_factor = 0.01, unit = "A" }
+total_power     = { oid = "1.3.6.1.4.1.318.1.1.32.3.4.1.7.1.1", scale_factor = 0.001, unit = "kW" }
+phase_1_warning = { oid = ".1.3.6.1.4.1.318.1.1.32.3.2.1.6.1.1", scale_factor = 0.01, unit = "A" }
+
+
+[models.Eaton-24-Port]
+match_manufacturer = "Eaton"
+
+[models.Eaton-24-Port.readings]
+input_voltage   = { oid = "1.3.6.1.4.1.534.6.6.7.3.2.1.3.0.1.1", scale_factor = 0.001, unit = "V" }
+phase_1         = { oid = "1.3.6.1.4.1.534.6.6.7.3.3.1.4.0.1.1", scale_factor = 0.001, unit = "A" }
+bank_1          = { oid = "1.3.6.1.4.1.534.6.6.7.5.4.1.3.0.1", scale_factor = 0.001, unit = "A" }
+bank_2          = { oid = "1.3.6.1.4.1.534.6.6.7.5.4.1.3.0.2", scale_factor = 0.001, unit = "A" }
+total_power     = { oid = "1.3.6.1.4.1.534.6.6.7.3.4.1.4.0.1.1", scale_factor = 0.001, unit = "kW" }
+phase_1_warning = { oid = "1.3.6.1.4.1.534.6.6.7.3.3.1.8.0.1.1", scale_factor = 0.001, unit = "A" }
+bank_1_warning  = { oid = "1.3.6.1.4.1.534.6.6.7.5.4.1.7.0.1", scale_factor = 0.001, unit = "A" }
+bank_2_warning  = { oid = "1.3.6.1.4.1.534.6.6.7.5.4.1.7.0.2", scale_factor = 0.001, unit = "A" }
+
+
+[models.apc-standard]
+match_manufacturer = "APC"
+match_model_prefixes = ["AP8953", "AP9953"]
+
+[models.apc-standard.readings]
+input_voltage   = { oid = "1.3.6.1.4.1.318.1.1.26.6.3.1.6.1", scale_factor = 1.0, unit = "V" }
+phase_1         = { oid = "1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.1", scale_factor = 0.1, unit = "A" }
+bank_1          = { oid = "1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.2", scale_factor = 0.1, unit = "A" }
+bank_2          = { oid = "1.3.6.1.4.1.318.1.1.12.2.3.1.1.2.3", scale_factor = 0.1, unit = "A" }
+total_power     = { oid = "1.3.6.1.4.1.318.1.1.26.4.3.1.5.1", scale_factor = 0.01, unit = "kW" }
+phase_1_warning = { oid = "1.3.6.1.4.1.318.1.1.12.2.2.1.1.3.1", scale_factor = 1, unit = "A" }
+bank_1_warning  = { oid = "1.3.6.1.4.1.318.1.1.12.2.4.1.1.3.1", scale_factor = 1, unit = "A" }
+bank_2_warning  = { oid = "1.3.6.1.4.1.318.1.1.12.2.4.1.1.3.2", scale_factor = 1, unit = "A" }
+

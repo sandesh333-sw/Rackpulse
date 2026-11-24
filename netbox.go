@@ -21,7 +21,7 @@ type NetBoxInventory struct {
 	client *http.Client
 }
 
-func NewnetBoxInventory(config NetBoxConfig) (*NetBoxInventory, error) {
+func NewNetBoxInventory(config NetBoxConfig) (*NetBoxInventory, error) {
 	config.BaseURL = strings.TrimRight(config.BaseURL, "/")
 
 	if config.BaseURL == "" {
@@ -31,7 +31,7 @@ func NewnetBoxInventory(config NetBoxConfig) (*NetBoxInventory, error) {
 	if config.Token == "" {
 		return nil, fmt.Errorf("NetBox API token is required")
 	}
-
+ 
 	_, err := url.ParseRequestURI(config.BaseURL)
 	if err != nil {
 		return nil, fmt.Errorf("invalid NetBox base URL: %w", err)
@@ -200,3 +200,5 @@ func (inventory *NetBoxInventory) ListPDUs(ctx context.Context) ([]InventoryDevi
 
 	return devices, nil
 }
+
+

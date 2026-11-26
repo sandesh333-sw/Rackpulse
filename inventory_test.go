@@ -41,3 +41,35 @@ func TestSyntheticInventoryCancelledContext(t *testing.T) {
 		t.Fatal("expected context cancellation error")
 	}
 }
+
+func TestDiscoverPDUs(t *testing.T) {
+	config, err := LoadModelConfig("config/pdu_models.toml")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pdus, err := DiscoverPDUs(
+		context.Background(),
+		SyntheticInventory{},
+		config,
+	)
+	if err != nil {
+		t.Fatalf("discovery failed: %v", err)
+	}
+
+	if len(pdus) != 3 {
+		t.Fatalf("expected 3 PDUs, got %d", len(pdus))
+	}
+
+	// APC AP8953 should receive the APC standard profile.
+	if len(pdus[0].Readings.Metrics) != 8 {
+		t.Errorf("expected 8 metrics for pdu389, got %d",
+			len(pdus[0].Readings.Metrics))
+	}
+
+	// Eaton should receive its own profile.
+	if len(pdus[2].Readings.Metrics) != 8 {
+		t.Errorf("expected 8 metrics for pdu522, got %d",
+			len(pdus[2].Readings.Metrics))
+	}
+}

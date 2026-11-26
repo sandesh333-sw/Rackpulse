@@ -46,29 +46,36 @@ func NewNetBoxInventory(config NetBoxConfig) (*NetBoxInventory, error) {
 }
 
 type netBoxDevice struct {
-	Name       string `json:"name"`
-	DeviceType struct {
-		Manufacturer struct {
-			Name string `json:"name"`
-		} `json:"manufacturer"`
-		Model string `json:"model"`
-	} `json:"device_type"`
-	Role struct {
-		Name string `json:"name"`
-		Slug string `json:"slug"`
-	} `json:"role"`
-	Tenant *struct {
-		Name string `json:"name"`
-	} `json:"tenant"`
-	Location *struct {
-		Name string `json:"name"`
-	} `json:"location"`
-	Rack *struct {
-		Name string `json:"name"`
-	} `json:"rack"`
-	PrimaryIP4 *struct {
-		Address string `json:"address"`
-	} `json:"primary_ip4"`
+    Name string `json:"name"`
+
+    DeviceType struct {
+        Manufacturer struct {
+            Name string `json:"name"`
+        } `json:"manufacturer"`
+
+        Model string `json:"model"`
+    } `json:"device_type"`
+
+    Role struct {
+        Name string `json:"name"`
+        Slug string `json:"slug"`
+    } `json:"role"`
+
+    Tenant *struct {
+        Name string `json:"name"`
+    } `json:"tenant"`
+
+    Location *struct {
+        Name string `json:"name"`
+    } `json:"location"`
+
+    Rack *struct {
+        Name string `json:"name"`
+    } `json:"rack"`
+
+    PrimaryIP4 *struct {
+        Address string `json:"address"`
+    } `json:"primary_ip4"`
 }
 
 type netBoxResponse struct {
